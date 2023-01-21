@@ -1,13 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
+import Questionnaire from './Routes/Questionnaire'
+import Results from './Routes/Results'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className='flex w-full justify-center items-center'>
-      <span className='text-5xl font-bold'>Sunlife Project</span>
+    <div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Questionnaire />} />
+          <Route path="/results" element={<Results />} />
+        </Routes>
+      </Router>
     </div>
   )
 }
