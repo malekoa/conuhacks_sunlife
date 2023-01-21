@@ -58,7 +58,7 @@ function App() {
 
           <Route path="/forecast" element={<Forecast data={data} setData={setData} navigate={useNavigate} />} />
 
-          <Route path="/results" element={<Results />} />
+          <Route path="/results" element={<Results data={data} />} />
         </Routes>
       </Router>
     </div>
