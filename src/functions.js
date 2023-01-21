@@ -32,7 +32,7 @@ export function yearlyLivingBudget() {
 /*
     Calculates the amount of money given at retirement, given a set of initial variables.
 */
-export function reCalculate(age, retirementAge, currentSavings, debt, debtInterest, gradDate, income, retirementAge, endSavings) {
+export function reCalculate(age, retirementAge, expectancyAge, currentSavings, debt, debtInterest, gradDate, income, retirementAge, endSavings) {
 
     /*
     Find life expendency/expected age of retirement
@@ -41,8 +41,8 @@ export function reCalculate(age, retirementAge, currentSavings, debt, debtIntere
     once debt free start calculating compound interest calculation with monthly savings added
     */
 
-    const workingYears = avgRetirement - age;
-    const retirementYears = avgExpendency - retirementAge;
+    const workingYears = retirementAge - age;
+    const retirementYears = expectancyAge - retirementAge;
     const currentDate = new Date();
     months = (gradDate.getFullYear() - currentDate.getFullYear()) * 12;
     months -= currentDate.getMonth() + 1;
