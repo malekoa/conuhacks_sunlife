@@ -11,14 +11,14 @@ import Forecast from './Routes/Forecast'
 function App() {
 
   // object that holds name, age, savings, debt, degree, boolean for if they are going to grad school, graduation date, and monthly savings percentage
-  const [name, setName] = useState('')
-  const [age, setAge] = useState('')
-  const [savings, setSavings] = useState('')
-  const [debt, setDebt] = useState('')
-  const [degree, setDegree] = useState('')
+  const [name, setName] = useState('name')
+  const [age, setAge] = useState(99)
+  const [savings, setSavings] = useState(100)
+  const [debt, setDebt] = useState(100)
+  const [degree, setDegree] = useState('undergrad')
   const [gradSchool, setGradSchool] = useState(false)
-  const [gradDate, setGradDate] = useState('')
-  const [monthlySavings, setMonthlySavings] = useState('')
+  const [gradDate, setGradDate] = useState('10/10/2023')
+  const [monthlySavings, setMonthlySavings] = useState(10)
 
   // object that holds all the data
   const data = {
