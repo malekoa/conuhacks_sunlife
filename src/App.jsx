@@ -19,29 +19,38 @@ function App() {
   const [gradSchool, setGradSchool] = useState(false)
   const [gradDate, setGradDate] = useState('10/10/2023')
   const [monthlySavings, setMonthlySavings] = useState(10)
+  const [retirementAge, setRetirementAge] = useState(65)
+  const [debtInterest, setDebtInterest] = useState(0.5)
+  const [income, setIncome] = useState(50000)
+
 
   // object that holds all the data
   const data = {
-    name: name,
-    age: age,
-    savings: savings,
-    debt: debt,
-    degree: degree,
-    gradSchool: gradSchool,
-    gradDate: gradDate,
-    monthlySavings: monthlySavings
+    name,
+    age,
+    savings,
+    debt,
+    degree,
+    gradSchool,
+    gradDate,
+    monthlySavings,
+    retirementAge,
+    income
+  
   }
 
   // object that holds all the functions that update the data
   const setData = {
-    setName: setName,
-    setAge: setAge,
-    setSavings: setSavings,
-    setDebt: setDebt,
-    setDegree: setDegree,
-    setGradSchool: setGradSchool,
-    setGradDate: setGradDate,
-    setMonthlySavings: setMonthlySavings
+    setName,
+    setAge,
+    setSavings,
+    setDebt,
+    setDegree,
+    setGradSchool,
+    setGradDate,
+    setMonthlySavings,
+    setRetirementAge,
+    setIncome
   }
 
   return (
@@ -58,7 +67,7 @@ function App() {
 
           <Route path="/forecast" element={<Forecast data={data} setData={setData} navigate={useNavigate} />} />
 
-          <Route path="/results" element={<Results data={data} />} />
+          <Route path="/results" element={<Results data={data} setData={setData} />} />
         </Routes>
       </Router>
     </div>
