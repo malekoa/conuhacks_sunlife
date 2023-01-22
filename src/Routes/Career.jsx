@@ -1,23 +1,36 @@
 import { Link } from "react-router-dom";
+import { salaries_list } from '../salaries'
+import { useState } from "react";
+
+// function that finds the salary of a job title from the salaries_list
+function findSalary(job_title) {
+    for (let i = 0; i < salaries_list.length; i++) {
+        if (salaries_list[i].job_title === job_title) {
+            return salaries_list[i].salary;
+        }
+    }
+}
 
 function Career(props) {
+    // dropdown state
+    const [job, setJob] = useState("Accountant");
+
     return (
         <div className="flex flex-col w-11/12 md:w-1/2 p-8 shadow space-y-8 rounded bg-gray-100 text-gray-900">
             <span className="text-2xl font-bold">Tell us about your career.</span>
 
             <div className="flex flex-col w-full space-y-4">
                 <div className="flex flex-col w-full space-y-2">
-                    <span>What is your major?</span>
-                    <input type="text" className="flex w-full border rounded-sm p-2" value={props.data.degree} onChange={(e) => props.setData.setDegree(e.target.value)} />
+                    <span>What field do you expect to work in?</span>
+                    <select className="flex w-full border rounded-sm p-2" value={job} onChange={(e) => { setJob(e.target.value); props.setData.setIncome(findSalary(e.target.value)) }}>
+                        {salaries_list.map((job, i) => {
+                            return <option value={job.job_title} key={i}>{job.job_title}</option>
+                        })}
+                    </select>
                 </div>
                 <div className="flex flex-col w-full space-y-2">
                     <span>What is your expected graduation date?</span>
                     <input type="text" className="flex w-full border rounded-sm p-2" value={props.data.gradDate} onChange={(e) => props.setData.setGradDate(e.target.value)} />
-                </div>
-                <div className="flex w-full space-x-2 items-center justify-between">
-                    <span>Grad school?</span>
-                    {/* checkbox that corresponds to the value of props.data.gradSchool */}
-                    <input type="checkbox" className="flex w-4 h-4 border rounded-sm p-2" checked={props.data.gradSchool} onChange={(e) => props.setData.setGradSchool(e.target.checked)} />
                 </div>
             </div>
 

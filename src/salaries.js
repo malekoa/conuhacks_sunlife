@@ -1,4 +1,4 @@
-salaries_list = [['Accountant', 58500.0],
+export const salaries_list = [['Accountant', 58500.0],
 ['Accounting Manager', 82661.0],
 ['Accounts Payable Specialist', 47500.0],
 ['Accounts Receivable Specialist', 47500.0],
@@ -207,5 +207,3 @@ salaries_list = [['Accountant', 58500.0],
 ['Truck Driver', 47049.0]].map((obj) => {
     return { job_title: obj[0], salary: obj[1] }
 })
-
-export default salaries_list
