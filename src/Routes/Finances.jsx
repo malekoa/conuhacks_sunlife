@@ -19,7 +19,7 @@ function Finances(props) {
             <div className="flex justify-end space-x-4">
 
                 {/* Link that navigates to personal */}
-                <Link to="/personal">
+                <Link to="/">
                     <button className="bg-yellow-400 hover:bg-yellow-500 text-white rounded-sm p-2 px-4 font-bold transition">Back</button>
                 </Link>
 

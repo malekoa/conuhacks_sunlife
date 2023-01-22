@@ -38,7 +38,7 @@ function App() {
     retirementAge,
     income,
     expectancyAge
-  
+
   }
 
   // object that holds all the functions that update the data
@@ -60,9 +60,7 @@ function App() {
     <div className='flex flex-col w-full h-screen justify-center items-center'>
       <Router>
         <Routes>
-          <Route path="/" element={<Questionnaire data={data} setData={setData} />} />
-
-          <Route path="/personal" element={<PersonalQuestions data={data} setData={setData} navigate={useNavigate} />} />
+          <Route path="/" element={<PersonalQuestions data={data} setData={setData} navigate={useNavigate} />} />
 
           <Route path="/finances" element={<Finances data={data} setData={setData} navigate={useNavigate} />} />
 
