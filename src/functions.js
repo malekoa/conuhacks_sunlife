@@ -101,11 +101,12 @@ export function reCalculate(age, retirementAge, expectancyAge, currentSavings, d
     const sumAtRetirement = compoundInterest(yearsToRetirement, interestRate, sumAfterDebt, savings+(12*debtRepayment), true);
     const yearlyStipend = yearlyLivingBudget(sumAtRetirement, interestRate, endSavings, expectancyAge-retirementAge)
 
-    /*var result = {
-        totalMoney: sumAtRetirement
-    }*/
+    const result = {
+        totalMoney : sumAtRetirement,
+        stipend : yearlyStipend
+    }
 
-    return yearlyStipend;
+    return result;
 }
 
 //export default {compoundInterest}
