@@ -5,26 +5,32 @@ const Results = ({ data }) => {
 
     const [lumpSum, setLumpSum] = useState(0);
 
-    const calculateNewForecast = () => {
+    // const handleParameterChange = (key) => {
+    //     calculateNewForecast();
+    // }
+
+    const handleParameterChange = () => {
         // age, retirementAge, expectancyAge, currentSavings, debt, debtInterest, gradDate, income, endSavings
-        setLumpSum(reCalculate(
-            localData['age'][0],
-            localData['retirementAge'][0],
-            localData['expectancyAge'][0], // ?
-            localData['savings'][0],
-            localData['debt'][0],
+        const newLump = reCalculate(
+            parseFloat(localData['age'][0]),
+            parseFloat(localData['retirementAge'][0]),
+            parseFloat(localData['expectancyAge'][0]), // ?
+            parseFloat(localData['savings'][0]),
+            parseFloat(localData['debt'][0]),
             0.01, //debtinterest
             new Date("2025-03-26"), //gradDate
-            localData['income'][0],
+            parseFloat(localData['income'][0]),
             0.07,
             0
-        ));
+        )
+        
+        setLumpSum(newLump);
 
 
     }
 
     useEffect(() => {
-        calculateNewForecast();
+        handleParameterChange();
     }, [])
 
     const localData = { ...data };
@@ -35,10 +41,6 @@ const Results = ({ data }) => {
 
     const handleTextChange = (text, key) => {
         localData[key][1](text.target.value);
-    }
-
-    const handleParameterChange = (key) => {
-        calculateNewForecast();
     }
 
     const handleAgeButton = (n) => {
@@ -80,7 +82,7 @@ const Results = ({ data }) => {
                                 <input type="text" value={entry[0]} onChange={text => { handleTextChange(text, key) }} className='flex border p-2 rounded w-1/2'></input>
                             </div>
 
-                            <button onClick={() => { handleParameterChange(key) }} className='p-2 bg-yellow-400 text-white rounded'>change</button>
+                            <button onClick={() => { handleParameterChange() }} className='p-2 bg-yellow-400 text-white rounded'>change</button>
                         </div>
                     )
                 })}
