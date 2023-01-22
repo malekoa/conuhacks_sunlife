@@ -17,7 +17,7 @@ const Results = ({ data }) => {
             parseFloat(localData['debt'][0]),
             parseFloat(localData['debtRepayment'][0]),
             parseFloat(localData['debtInterest'][0]), //debtinterest
-            localData['gradDate'][0], //gradDate
+            new Date(localData['gradDate'][0]), //gradDate
             parseFloat(localData['income'][0]),
             0.07,
             0
