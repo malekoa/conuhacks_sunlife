@@ -14,11 +14,12 @@ function App() {
   const [name, setName] = useState('name')
   const [age, setAge] = useState(30)
   const [savings, setSavings] = useState(1000)
+  const [savingsRate, setSavingsRate] = useState(0.1)
   const [debt, setDebt] = useState(1000)
+  const [debtRepayment, setDebtRepayment] = useState(0.1)
   const [degree, setDegree] = useState('undergrad')
   const [gradSchool, setGradSchool] = useState(false)
   const [gradDate, setGradDate] = useState('10/10/2023')
-  const [monthlySavings, setMonthlySavings] = useState(10)
   const [retirementAge, setRetirementAge] = useState(65)
   const [debtInterest, setDebtInterest] = useState(0.05)
   const [income, setIncome] = useState(50000)
@@ -30,11 +31,12 @@ function App() {
     name,
     age,
     savings,
+    savingsRate,
     debt,
+    debtRepayment,
     degree,
     gradSchool,
     gradDate,
-    monthlySavings,
     retirementAge,
     income,
     expectancyAge
@@ -46,11 +48,12 @@ function App() {
     setName,
     setAge,
     setSavings,
+    setSavingsRate,
     setDebt,
+    setDebtRepayment,
     setDegree,
     setGradSchool,
     setGradDate,
-    setMonthlySavings,
     setRetirementAge,
     setIncome,
     setExpectancyAge

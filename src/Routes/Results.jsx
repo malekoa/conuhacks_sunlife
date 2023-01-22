@@ -4,6 +4,7 @@ import { reCalculate } from '../functions';
 const Results = ({ data }) => {
 
     const [lumpSum, setLumpSum] = useState(0);
+    const [stipend, setStipend] = useState(0);
 
     // const handleParameterChange = (key) => {
     //     calculateNewForecast();
@@ -11,12 +12,14 @@ const Results = ({ data }) => {
 
     const handleParameterChange = () => {
         // age, retirementAge, expectancyAge, currentSavings, debt, debtInterest, gradDate, income, endSavings
-        const newLump = reCalculate(
+        const fetch = reCalculate(
             parseFloat(localData['age'][0]),
             parseFloat(localData['retirementAge'][0]),
             parseFloat(localData['expectancyAge'][0]), // ?
             parseFloat(localData['savings'][0]),
+            parseFloat(localData['savingsRate'][0]),
             parseFloat(localData['debt'][0]),
+            parseFloat(localData['debtRepayment'][0]),
             0.01, //debtinterest
             new Date("2025-03-26"), //gradDate
             parseFloat(localData['income'][0]),
@@ -24,7 +27,8 @@ const Results = ({ data }) => {
             0
         )
         
-        setLumpSum(newLump);
+        setLumpSum(fetch.totalMoney);
+        setStipend(fetch.stipend);
 
 
     }
@@ -57,8 +61,10 @@ const Results = ({ data }) => {
 
         <div className='flex flex-col h-full w-full text-center space-y-2 py-8'>
             <div className='flex w-full justify-center items-center flex-col'>
-                <span>Your annual stipend after retirement is:</span>
+                <span>Your balance at time of retirement is:</span>
                 <span className='flex justify-center items-center rounded p-2 text-4xl font-bold bg-gray-100'>{lumpSum.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 })}</span>
+                <span>Your annual stipend after retirement is:</span>
+                <span className='flex justify-center items-center rounded p-2 text-4xl font-bold bg-gray-100'>{stipend.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 })}</span>
 
             </div>
             {/* <span className='text-xl font-bold'>Your annual stipend after retirement is ${lumpSum.toFixed(2)}</span> */}

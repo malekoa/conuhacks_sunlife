@@ -39,7 +39,7 @@ export function yearlyLivingBudget(startingCapital, interestRate, amountRemainin
     // Increment will be cut in half each cycle
     let increment = stipend/2;
     // Initialized to -1 so that it cant complete on the first check
-    let reamining = -1;
+    let remaining = -1;
     // Keep incrementing until the difference between remaining and the target goal is minimal (within 0.5)
     while (Math.abs(remaining - amountRemaining) > 0.5) {
         // Each loop reinitialize to the starting capital
@@ -58,7 +58,7 @@ export function yearlyLivingBudget(startingCapital, interestRate, amountRemainin
         // Adjust increment to be smaller to fine tune
         increment = increment/2;
         // Change remaing, if this is close enough to the target goal, this will end the loop
-        reamining = remainingCaptial;
+        remaining = remainingCapital;
     }
     return stipend;
 }
@@ -66,7 +66,7 @@ export function yearlyLivingBudget(startingCapital, interestRate, amountRemainin
 /*
     Calculates the amount of money given at retirement, given a set of initial variables.
 */
-export function reCalculate(age, retirementAge, expectancyAge, currentSavings, debt, debtInterest, gradDate, income, retirementAge, endSavings) {
+export function reCalculate(age, retirementAge, expectancyAge, currentSavings, savingsRate, debt, debtService, debtInterest, gradDate, income, interestRate, endSavings) {
 
     /*
     Find life expendency/expected age of retirement
@@ -86,8 +86,8 @@ export function reCalculate(age, retirementAge, expectancyAge, currentSavings, d
     const futureDebt = debtGrowth(debt, debtInterest, monthsUntilGrad);
 
     // Assuming a debt repayment of 10% of income
-    const savings = 0.1*income;
-    const debtRepayment = 0.1*(income/12); // This is calculated to be taken out monthly
+    const savings = savingsRate*income;
+    const debtRepayment = debtService*(income/12); // This is calculated to be taken out monthly
 
     // Will get the year that the user will be debt free assuming a constant repayment.
     let debtFree = yearDebtFree(futureDebt, debtInterest, debtRepayment);
