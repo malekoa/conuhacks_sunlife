@@ -1,11 +1,31 @@
 import { useState, useEffect } from 'react';
+import { reCalculate } from '../functions';
 
 const Results = ({ data }) => {
+
     const [lumpSum, setLumpSum] = useState(0);
 
-    const reCalculate = () => {
-        // TODO
+    const calculateNewForecast = () => {
+        // age, retirementAge, expectancyAge, currentSavings, debt, debtInterest, gradDate, income, endSavings
+        setLumpSum(reCalculate(
+            localData['age'][0],
+            localData['retirementAge'][0],
+            localData['expectancyAge'][0], // ?
+            localData['savings'][0],
+            localData['debt'][0],
+            0.01, //debtinterest
+            new Date("2025-03-26"), //gradDate
+            localData['income'][0],
+            0.07,
+            0
+        ));
+
+        
     }
+
+    useEffect(() => {
+        calculateNewForecast();
+    }, [])
 
     const localData = {...data};
 
@@ -18,7 +38,7 @@ const Results = ({ data }) => {
     }
 
     const handleParameterChange = (key) => {
-        reCalculate();
+        calculateNewForecast();
     }
 
     const handleAgeButton = (n) => {
@@ -31,6 +51,7 @@ const Results = ({ data }) => {
     // }, [localData.retirementAge[0]])
 
     return (
+
 
         <div>
             <h1>Your annual stipend after reitrement is {lumpSum} </h1>

@@ -12,16 +12,17 @@ function App() {
 
   // object that holds name, age, savings, debt, degree, boolean for if they are going to grad school, graduation date, and monthly savings percentage
   const [name, setName] = useState('name')
-  const [age, setAge] = useState(99)
-  const [savings, setSavings] = useState(100)
-  const [debt, setDebt] = useState(100)
+  const [age, setAge] = useState(30)
+  const [savings, setSavings] = useState(1000)
+  const [debt, setDebt] = useState(1000)
   const [degree, setDegree] = useState('undergrad')
   const [gradSchool, setGradSchool] = useState(false)
   const [gradDate, setGradDate] = useState('10/10/2023')
   const [monthlySavings, setMonthlySavings] = useState(10)
   const [retirementAge, setRetirementAge] = useState(65)
-  const [debtInterest, setDebtInterest] = useState(0.5)
+  const [debtInterest, setDebtInterest] = useState(0.05)
   const [income, setIncome] = useState(50000)
+  const [expectancyAge, setExpectancyAge] = useState(80);
 
 
   // object that holds all the data
@@ -35,7 +36,8 @@ function App() {
     gradDate,
     monthlySavings,
     retirementAge,
-    income
+    income,
+    expectancyAge
   
   }
 
@@ -50,7 +52,8 @@ function App() {
     setGradDate,
     setMonthlySavings,
     setRetirementAge,
-    setIncome
+    setIncome,
+    setExpectancyAge
   }
 
   return (

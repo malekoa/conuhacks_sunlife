@@ -11,7 +11,7 @@ export function debtGrowth(initialSum, debtInterestRate, months) {
     and how much money is used to repay the debt monthly (make sure this is monthly and not annual). This is assuming interest is compounded monthly.
 */
 export function yearDebtFree(debtAmount, debtInterest, debtRepayment) {
-    if (debtAmount*(1+debtInterest) > debtRepayment) {
+    if (debtAmount*debtInterest > debtRepayment) {
         return false;
     }
     else {
@@ -26,7 +26,7 @@ export function yearDebtFree(debtAmount, debtInterest, debtRepayment) {
 */
 export function compoundInterest(years, interestRate, startCapital, contributeCapital, annually) {
     const discountRate = interestRate/(1+interestRate)
-    return (startCapital + (contributeCapital/discountRate) * Math.pow(1 + interestRate, years)) - contributeCapital/discountRate;
+    return ((startCapital + (contributeCapital/discountRate)) * Math.pow(1 + interestRate, years)) - contributeCapital/discountRate;
 }
 
 /*
@@ -43,7 +43,7 @@ export function yearlyLivingBudget(startingCapital, interestRate, amountRemainin
 /*
     Calculates the amount of money given at retirement, given a set of initial variables.
 */
-export function reCalculate(age, retirementAge, expectancyAge, currentSavings, debt, debtInterest, gradDate, income, retirementAge, endSavings) {
+export function reCalculate(age, retirementAge, expectancyAge, currentSavings, debt, debtInterest, gradDate, income, interestRate, endSavings) {
 
     /*
     Find life expendency/expected age of retirement
@@ -61,28 +61,33 @@ export function reCalculate(age, retirementAge, expectancyAge, currentSavings, d
 
     // Calcualting the debt by the end of education
     const futureDebt = debtGrowth(debt, debtInterest, monthsUntilGrad);
+    console.log('future debt: ' + futureDebt);
 
     // Assuming a debt repayment of 10% of income
     const savings = 0.1*income;
     const debtRepayment = 0.1*(income/12); // This is calculated to be taken out monthly
-
+    console.log('debt rpay:' + debtRepayment)
     // Will get the year that the user will be debt free assuming a constant repayment.
     let debtFree = yearDebtFree(futureDebt, debtInterest, debtRepayment);
     if (!debtFree) {
         debtFree = retirementAge - age;
+        
     }
-    // Will get the amount of money accrued by the end of paying off the debt.
-    const yearsWithDebt = age + debtFree;
-    const sumAfterDebt = compoundInterest(yearsWithDebt, interestRate, currentSavings, savings, true);
-    // Gets the final lump sum at the projected retirement age, using the new savings rate now that debt is paid off.
-    const yearsToRetirement = retirementAge - yearsWithDebt;
-    const sumAtRetirement = compoundInterest(yearsToRetirement, interestRate, sumAfterDebt, savings+(12*debtRepayment), true);
 
+    console.log('debt free' + debtFree);
+    // Will get the amount of money accrued by the end of paying off the debt.
+    const sumAfterDebt = compoundInterest(debtFree, interestRate, currentSavings, savings, true);
+    console.log('sum after debt:' + sumAfterDebt)
+    
+    // Gets the final lump sum at the projected retirement age, using the new savings rate now that debt is paid off.
+    const yearsToRetirement = retirementAge - debtFree - age;
+    console.log('yrs to ret:' + yearsToRetirement)
+    
+    const sumAtRetirement = compoundInterest(yearsToRetirement, interestRate, sumAfterDebt, savings+(12*debtRepayment), true);
+    
     /*var result = {
         totalMoney: sumAtRetirement
     }*/
 
     return sumAtRetirement;
 }
-
-//export default {compoundInterest}
