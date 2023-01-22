@@ -48,6 +48,7 @@ const Results = ({ data }) => {
     const handleAgeButton = (n) => {
         const newAge = localData.retirementAge[0] + n;
         localData.retirementAge[1](newAge);
+        handleParameterChange();
     }
 
     // useEffect(() => {
