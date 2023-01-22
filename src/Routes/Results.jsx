@@ -6,10 +6,6 @@ const Results = ({ data }) => {
     const [lumpSum, setLumpSum] = useState(0);
     const [stipend, setStipend] = useState(0);
 
-    // const handleParameterChange = (key) => {
-    //     calculateNewForecast();
-    // }
-
     const handleParameterChange = () => {
         // age, retirementAge, expectancyAge, currentSavings, debt, debtInterest, gradDate, income, endSavings
         const fetch = reCalculate(
@@ -20,8 +16,8 @@ const Results = ({ data }) => {
             parseFloat(localData['savingsRate'][0]),
             parseFloat(localData['debt'][0]),
             parseFloat(localData['debtRepayment'][0]),
-            0.01, //debtinterest
-            new Date("2025-03-26"), //gradDate
+            parseFloat(localData['debtInterest'][0]), //debtinterest
+            localData['gradDate'][0], //gradDate
             parseFloat(localData['income'][0]),
             0.07,
             0
