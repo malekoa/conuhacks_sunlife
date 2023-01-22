@@ -20,14 +20,14 @@ const Results = ({ data }) => {
             0
         ));
 
-        
+
     }
 
     useEffect(() => {
         calculateNewForecast();
     }, [])
 
-    const localData = {...data};
+    const localData = { ...data };
 
     for (let i in localData) {
         localData[i] = useState(data[i]);
@@ -47,51 +47,48 @@ const Results = ({ data }) => {
     }
 
     // useEffect(() => {
-        
+
     // }, [localData.retirementAge[0]])
 
     return (
 
 
-        <div>
-            <h1>Your annual stipend after reitrement is {lumpSum} </h1>
+        <div className='flex flex-col h-full w-full text-center space-y-2 py-8'>
+            <div className='flex w-full justify-center items-center flex-col'>
+                <span>Your annual stipend after retirement is:</span>
+                <span className='flex justify-center items-center rounded p-2 text-4xl font-bold bg-gray-100'>{lumpSum.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 })}</span>
 
-            <button 
-                className="bg-yellow-400 text-white rounded-sm p-2 px-4 font-bold"
-                onClick={() => handleAgeButton(-1)}
-            >
+            </div>
+            {/* <span className='text-xl font-bold'>Your annual stipend after retirement is ${lumpSum.toFixed(2)}</span> */}
+
+            <div className='flex w-full justify-around'>
+                <button className="bg-yellow-400 text-white rounded-sm p-2 font-bold" onClick={() => handleAgeButton(-1)}>
                     Retire one year earlier
                 </button>
-            <button 
-                className="bg-yellow-400 text-white rounded-sm p-2 px-4 font-bold"
-                onClick={() => handleAgeButton(1)}
-            >
+                <button className="bg-yellow-400 text-white rounded-sm p-2 font-bold" onClick={() => handleAgeButton(1)}>
                     Retire one year later
                 </button>
+            </div>
+
 
             <div>
                 {Object.entries(localData).map(([key, entry]) => {
                     return (
-                    <div key={key}>
-                        <div>{key} : 
-                        <input 
-                            type="text" 
-                            value={entry[0]}
-                            onChange={text => {handleTextChange(text, key)}}
-                        >
+                        <div key={key} className='flex items-center justify-end p-1 w-full font-bold odd:bg-gray-100'>
+                            <div className='flex items-center'>
+                                <span className='flex w-1/2 h-full items-center text-left'>{key}:</span>
+                                <input type="text" value={entry[0]} onChange={text => { handleTextChange(text, key) }} className='flex border p-2 rounded w-1/2'></input>
+                            </div>
 
-                        </input>
+                            <button onClick={() => { handleParameterChange(key) }} className='p-2 bg-yellow-400 text-white rounded'>change</button>
                         </div>
-                         
-                        <button onClick={() => {handleParameterChange(key)}}>change</button>
-                    </div>
-                    )  
+                    )
                 })}
             </div>
 
-            
+
         </div>
-        
+
     );
 }
 
