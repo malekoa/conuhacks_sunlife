@@ -82,7 +82,7 @@ const Results = ({ data }) => {
                     return (
                         <div key={key} className='flex items-center justify-end p-1 w-full font-bold odd:bg-gray-100'>
                             <div className='flex items-center'>
-                                <span className='flex w-1/2 h-full items-center text-left'>{key}:</span>
+                                <span className='flex w-1/2 h-full items-center text-left'>{key}<button>?</button>:</span>
                                 <input type="text" value={entry[0]} onChange={text => { handleTextChange(text, key) }} className='flex border p-2 rounded w-1/2'></input>
                             </div>
 
