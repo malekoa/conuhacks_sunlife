@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Questionnaire from './Routes/Questionnaire'
+import Home from './Routes/Home'
 import Results from './Routes/Results'
 import PersonalQuestions from './Routes/PersonalQuestions'
 import Finances from './Routes/Finances'
@@ -59,7 +60,9 @@ function App() {
     <div className='flex flex-col w-full h-screen justify-center items-center'>
       <Router>
         <Routes>
-          <Route path="/" element={<PersonalQuestions data={data} setData={setData} navigate={useNavigate} />} />
+          <Route path="/" element={<Home data={data} setData={setData} navigate={useNavigate} />} />
+          
+          <Route path="/personal" element={<PersonalQuestions data={data} setData={setData} navigate={useNavigate} />} />
 
           <Route path="/finances" element={<Finances data={data} setData={setData} navigate={useNavigate} />} />
 
