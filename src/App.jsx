@@ -17,7 +17,7 @@ function App() {
   const [savingsRate, setSavingsRate] = useState(0.1)
   const [debt, setDebt] = useState(1000)
   const [debtRepayment, setDebtRepayment] = useState(0.1)
-  const [gradDate, setGradDate] = useState('10/10/2023')
+  const [gradDate, setGradDate] = useState(Date('10/10/2023'))
   const [retirementAge, setRetirementAge] = useState(65)
   const [debtInterest, setDebtInterest] = useState(0.05)
   const [income, setIncome] = useState(50000)
