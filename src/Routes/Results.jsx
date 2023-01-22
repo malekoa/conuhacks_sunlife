@@ -97,10 +97,11 @@ const Results = ({ data }) => {
                 {Object.entries(localData).map(([key, entry]) => {
                     return (
                         <div key={key} className='flex items-center justify-end p-1 w-full font-bold odd:bg-gray-100'>
-                            <div className='flex items-center'>
-                                <span className='flex w-1/2 h-full items-center text-left'>{key}
-                                    {(key in blurbs) ? <button onClick={() => { handleModal(key, blurbs[key]) }}>?</button> : ''}
-                                :</span>
+                            <div className='flex w-full items-center justify-between'>
+                                <span className='flex h-full items-center text-left space-x-2'>
+                                    <span>{key}</span>
+                                    {(key in blurbs) ? <button className='flex justify-center items-center rounded-full bg-yellow-400 w-5 h-5' onClick={() => { handleModal(key, blurbs[key]) }}>?</button> : ''}
+                                    :</span>
                                 <input type="text" value={entry[0]} onChange={text => { handleTextChange(text, key) }} className='flex border p-2 rounded w-1/2'></input>
                             </div>
 
