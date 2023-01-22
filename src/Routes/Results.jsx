@@ -54,7 +54,7 @@ const Results = ({ data }) => {
     // }, [localData.retirementAge[0]])
 
     // modal is active bool
-    const [modalActive, setModalActive] = useState(true);
+    const [modalActive, setModalActive] = useState(false);
     const [modalTitle, setModalTitle] = useState('Title');
     const [modalText, setModalText] = useState('body');
 
