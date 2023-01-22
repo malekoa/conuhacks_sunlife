@@ -8,7 +8,7 @@ function Forecast(props) {
             <div className="flex flex-col w-full space-y-4">
                 <div className="flex flex-col w-full space-y-2">
                     <span>How much do you want to save per month (as a percentage)?</span>
-                    <input type="text" className="flex w-full border rounded-sm p-2" value={props.data.monthlySavings} onChange={(e) => props.setData.setMonthlySavings(e.target.value)} />
+                    <input type="text" className="flex w-full border rounded-sm p-2" value={props.data.savingsRate} onChange={(e) => props.setData.setSavingsRate(e.target.value)} />
                 </div>
             </div>
 
