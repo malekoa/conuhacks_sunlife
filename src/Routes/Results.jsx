@@ -65,6 +65,8 @@ const Results = ({ data }) => {
                 <span className='flex justify-center items-center rounded p-2 text-4xl font-bold bg-gray-100'>{lumpSum.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 })}</span>
                 <span>Your annual stipend after retirement is:</span>
                 <span className='flex justify-center items-center rounded p-2 text-4xl font-bold bg-gray-100'>{stipend.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 })}</span>
+                <span>Monthly, that's:</span>
+                <span className='flex justify-center items-center rounded p-2 text-4xl font-bold bg-gray-100'>{(stipend / 12).toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 })}</span>
 
             </div>
             {/* <span className='text-xl font-bold'>Your annual stipend after retirement is ${lumpSum.toFixed(2)}</span> */}
