@@ -11,6 +11,15 @@ function findSalary(job_title) {
     }
 }
 
+// convert date object to 'MM/DD/YYYY' format
+const formatDate = (date) => {
+    date = new Date(date)
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    const year = date.getFullYear()
+    return `${month}/${day}/${year}`
+}
+
 function Career(props) {
     // dropdown state
     const [job, setJob] = useState("Accountant");
@@ -30,7 +39,7 @@ function Career(props) {
                 </div>
                 <div className="flex flex-col w-full space-y-2">
                     <span>What is your expected graduation date?</span>
-                    <input type="text" className="flex w-full border rounded-sm p-2" value={props.data.gradDate} onChange={(e) => props.setData.setGradDate(e.target.value)} />
+                    <input type="date" className="flex w-full border rounded-sm p-2" value={props.data.gradDate} onChange={(e) => props.setData.setGradDate(e.target.value)} />
                 </div>
             </div>
 
