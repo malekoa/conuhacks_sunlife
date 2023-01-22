@@ -206,4 +206,7 @@ export const salaries_list = [['Accountant', 58500.0],
 ['Train Conductor', 82908.0],
 ['Truck Driver', 47049.0]].map((obj) => {
     return { job_title: obj[0], salary: obj[1] }
-})
+}).sort((a, b) => {
+    // sort by job title alphabetically
+    return a.job_title.localeCompare(b.job_title);
+});
