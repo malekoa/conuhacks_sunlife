@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { reCalculate } from '../functions';
+import Modal from '../components/Modal';
 
 const Results = ({ data }) => {
 
@@ -22,7 +23,7 @@ const Results = ({ data }) => {
             0.07,
             0
         )
-        
+
         setLumpSum(fetch.totalMoney);
         setStipend(fetch.stipend);
 
@@ -52,10 +53,24 @@ const Results = ({ data }) => {
 
     // }, [localData.retirementAge[0]])
 
+    // modal is active bool
+    const [modalActive, setModalActive] = useState(true);
+    const [modalTitle, setModalTitle] = useState('Title');
+    const [modalText, setModalText] = useState('body');
+
+    // modal function that sets the modal title and body and sets the modal active to true
+    const handleModal = (title, text) => {
+        setModalTitle(title);
+        setModalText(text);
+        setModalActive(true);
+    }
+
     return (
 
 
         <div className='flex flex-col h-full w-full text-center space-y-2 py-8'>
+            {modalActive && <Modal title={modalTitle} text={modalText} setModalActive={setModalActive} />}
+
             <div className='flex w-full justify-center items-center flex-col'>
                 <span>Your balance at time of retirement is:</span>
                 <span className='flex justify-center items-center rounded p-2 text-4xl font-bold bg-gray-100'>{lumpSum.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 })}</span>
